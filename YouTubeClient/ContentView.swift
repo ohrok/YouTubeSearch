@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let videos: [String] = {
+        var videos: [String] = []
+        for i in 0..<50 {
+            let video = "video\(i + 1)"
+            videos.append(video)
+        }
+        return videos
+    }()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List {
+            ForEach(0..<videos.count) { index in
+                Text(videos[index])
+            }
+        }
     }
 }
 
