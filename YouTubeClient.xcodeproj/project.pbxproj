@@ -95,10 +95,9 @@
 		D831D8322646622800561548 /* YouTubeClient */ = {
 			isa = PBXGroup;
 			children = (
-				D831D8332646622800561548 /* YouTubeClientApp.swift */,
-				D831D8352646622800561548 /* ContentView.swift */,
-				D831D8372646622B00561548 /* Assets.xcassets */,
-				D831D83C2646622B00561548 /* Info.plist */,
+				D87D6C2E264A38D500C3BA7C /* App */,
+				D87D6C2D264A38CB00C3BA7C /* Views */,
+				D87D6C2F264A390300C3BA7C /* Resources */,
 				D831D8392646622B00561548 /* Preview Content */,
 			);
 			path = YouTubeClient;
@@ -128,6 +127,31 @@
 				D831D8522646622B00561548 /* Info.plist */,
 			);
 			path = YouTubeClientUITests;
+			sourceTree = "<group>";
+		};
+		D87D6C2D264A38CB00C3BA7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D831D8352646622800561548 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D87D6C2E264A38D500C3BA7C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D831D8332646622800561548 /* YouTubeClientApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D87D6C2F264A390300C3BA7C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D831D8372646622B00561548 /* Assets.xcassets */,
+				D831D83C2646622B00561548 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,7 +445,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"YouTubeClient/Preview Content\"";
 				DEVELOPMENT_TEAM = PH7H3K3AG6;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = YouTubeClient/Info.plist;
+				INFOPLIST_FILE = YouTubeClient/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,7 +467,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"YouTubeClient/Preview Content\"";
 				DEVELOPMENT_TEAM = PH7H3K3AG6;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = YouTubeClient/Info.plist;
+				INFOPLIST_FILE = YouTubeClient/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
