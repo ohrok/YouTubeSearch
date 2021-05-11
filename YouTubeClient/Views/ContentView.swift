@@ -23,6 +23,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search Spots")
+                .onSearchBarSearchButtonClicked {
+                    print("The search text is: '\(searchText)'")
+                }
             List {
                 ForEach(videos.filter {
                     self.searchText.isEmpty || $0.lowercased().contains(self.searchText.lowercased())

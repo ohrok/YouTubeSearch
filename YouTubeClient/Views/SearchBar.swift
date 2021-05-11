@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct SearchBar: UIViewRepresentable {
     
@@ -14,8 +15,10 @@ struct SearchBar: UIViewRepresentable {
     var searchBarStyle = UISearchBar.Style.minimal
     var autocapitalizationType = UITextAutocapitalizationType.none
     
+    private let searchButtonClickedSubject = PassthroughSubject<Void, Never>()
+    
     func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text)
+        return Coordinator(self)
     }
     
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
@@ -29,17 +32,32 @@ struct SearchBar: UIViewRepresentable {
     
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
         uiView.text = text
+        context.coordinator.searchBar = self
     }
     
-    class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
+    func onSearchBarSearchButtonClicked(perform: @escaping (() -> Void)) -> some View {
+        return onReceive(searchButtonClickedSubject) {
+            perform()
+        }
+    }
+}
+
+extension SearchBar {
+    
+    final class Coordinator: NSObject, UISearchBarDelegate {
         
-        init(text: Binding<String>) {
-            _text = text
+        fileprivate var searchBar: SearchBar
+        
+        init(_ searchBar: SearchBar) {
+            self.searchBar = searchBar
         }
         
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
+            self.searchBar.text = searchText
+        }
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            self.searchBar.searchButtonClickedSubject.send()
         }
     }
 }
