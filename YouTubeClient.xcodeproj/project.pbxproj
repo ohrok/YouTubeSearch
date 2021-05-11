@@ -14,6 +14,7 @@
 		D831D8462646622B00561548 /* YouTubeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831D8452646622B00561548 /* YouTubeClientTests.swift */; };
 		D831D8512646622B00561548 /* YouTubeClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831D8502646622B00561548 /* YouTubeClientUITests.swift */; };
 		D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */; };
+		D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D831D8502646622B00561548 /* YouTubeClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeClientUITests.swift; sourceTree = "<group>"; };
 		D831D8522646622B00561548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				D87D6C2E264A38D500C3BA7C /* App */,
 				D87D6C2D264A38CB00C3BA7C /* Views */,
+				D8D75FA9264A740B00DCA862 /* Extension */,
 				D87D6C2F264A390300C3BA7C /* Resources */,
 				D831D8392646622B00561548 /* Preview Content */,
 			);
@@ -155,6 +158,14 @@
 				D831D83C2646622B00561548 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D8D75FA9264A740B00DCA862 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 			files = (
 				D831D8362646622800561548 /* ContentView.swift in Sources */,
 				D831D8342646622800561548 /* YouTubeClientApp.swift in Sources */,
+				D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */,
 				D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

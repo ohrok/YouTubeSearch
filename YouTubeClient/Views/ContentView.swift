@@ -28,12 +28,14 @@ struct ContentView: View {
                     searchedVideos = videos.filter {
                         $0.lowercased().contains(self.searchText.lowercased())
                     }
+                    UIApplication.shared.closeKeyboard()
                 }
             List {
                 ForEach(searchedVideos, id: \.self) { video in
                     Text(video)
                 }
             }
+            .listStyle(InsetGroupedListStyle())
         }
     }
 }
