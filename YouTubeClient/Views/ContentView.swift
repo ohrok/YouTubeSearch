@@ -11,25 +11,26 @@ struct ContentView: View {
     
     private let videos: [String] = {
         var videos: [String] = []
-        for i in 0..<50 {
+        for i in 0..<1000 {
             let video = "video\(i + 1)"
             videos.append(video)
         }
         return videos
     }()
     
+    @State private var searchedVideos: [String] = []
     @State private var searchText: String = ""
     
     var body: some View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search Spots")
                 .onSearchBarSearchButtonClicked {
-                    print("The search text is: '\(searchText)'")
+                    searchedVideos = videos.filter {
+                        $0.lowercased().contains(self.searchText.lowercased())
+                    }
                 }
             List {
-                ForEach(videos.filter {
-                    self.searchText.isEmpty || $0.lowercased().contains(self.searchText.lowercased())
-                }, id: \.self) { video in
+                ForEach(searchedVideos, id: \.self) { video in
                     Text(video)
                 }
             }
