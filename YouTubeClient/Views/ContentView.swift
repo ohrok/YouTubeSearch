@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let videos: [String] = {
+    private let videos: [String] = {
         var videos: [String] = []
         for i in 0..<50 {
             let video = "video\(i + 1)"
@@ -18,10 +18,17 @@ struct ContentView: View {
         return videos
     }()
     
+    @State private var searchText: String = ""
+    
     var body: some View {
-        List {
-            ForEach(0..<videos.count) { index in
-                Text(videos[index])
+        VStack {
+            SearchBar(text: $searchText, placeholder: "Search Spots")
+            List {
+                ForEach(videos.filter {
+                    self.searchText.isEmpty || $0.lowercased().contains(self.searchText.lowercased())
+                }, id: \.self) { video in
+                    Text(video)
+                }
             }
         }
     }
