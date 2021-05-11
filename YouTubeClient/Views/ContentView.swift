@@ -34,6 +34,9 @@ struct ContentView: View {
                 ForEach(searchedVideos, id: \.self) { video in
                     Text(video)
                 }
+                if searchedVideos.count == 0 {
+                    Text("Nothing Found")
+                }
             }
             .listStyle(InsetGroupedListStyle())
         }
