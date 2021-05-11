@@ -12,7 +12,7 @@ struct ContentView: View {
     private let videos: [SearchResult] = {
         var videos: [SearchResult] = []
         let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
-        for i in 0..<100 {
+        for i in 0..<1000 {
             let video = SearchResult(name: "video\(i + 1)", channelName: channelNameExamples.randomElement() ?? "")
             videos.append(video)
         }
@@ -39,7 +39,9 @@ struct ContentView: View {
                     }
                 }
                 if searchResults.count == 0 {
-                    Text("Nothing Found")
+                    VStack(alignment: .center) {
+                        Text("Nothing Found").frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
