@@ -13,7 +13,7 @@ struct SearchView: View {
         var videos: [SearchResult] = []
         let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
         for i in 0..<1000 {
-            let video = SearchResult(name: "video\(i + 1)", channelName: channelNameExamples.randomElement() ?? "")
+            let video = SearchResult(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
             videos.append(video)
         }
         return videos
@@ -28,19 +28,14 @@ struct SearchView: View {
             SearchBar(text: $searchText, placeholder: "Search Spots")
                 .onSearchBarSearchButtonClicked {
                     searchResults = videos.filter {
-                        $0.name.lowercased().contains(self.searchText.lowercased()) || $0.channelName.lowercased().contains(self.searchText.lowercased()) 
+                        $0.title.lowercased().contains(self.searchText.lowercased()) || $0.channelTitle.lowercased().contains(self.searchText.lowercased()) 
                     }
-                    if searchResults.count == 0 {
-                        isNothingFound = true
-                    }
+                    isNothingFound = searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
                 }
             List {
-                ForEach(searchResults) { result in
-                    VStack(alignment: .leading) {
-                        Text(result.name).bold().foregroundColor(.red)
-                        Text(result.channelName)
-                    }
+                ForEach(searchResults) { searchResult in
+                    SearchResultCell(searchResult: searchResult)
                 }
                 if isNothingFound {
                     VStack(alignment: .center) {

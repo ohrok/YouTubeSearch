@@ -9,6 +9,6 @@ import Foundation
 
 struct SearchResult: Codable, Identifiable {
     var id = UUID()
-    var name: String
-    var channelName: String
+    var title: String
+    var channelTitle: String
 }

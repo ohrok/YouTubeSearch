@@ -16,6 +16,7 @@
 		D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */; };
 		D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */; };
 		D8D75FAE264A791800DCA862 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAD264A791800DCA862 /* SearchResult.swift */; };
+		D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		D8D75FAD264A791800DCA862 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				D831D8352646622800561548 /* SearchView.swift */,
 				D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */,
+				D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				D831D8342646622800561548 /* YouTubeClientApp.swift in Sources */,
 				D8D75FAE264A791800DCA862 /* SearchResult.swift in Sources */,
 				D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */,
+				D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */,
 				D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
