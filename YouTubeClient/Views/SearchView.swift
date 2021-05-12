@@ -21,6 +21,7 @@ struct SearchView: View {
     
     @State private var searchResults: [SearchResult] = []
     @State private var searchText: String = ""
+    @State private var isNothingFound: Bool = false
     
     var body: some View {
         VStack {
@@ -28,6 +29,9 @@ struct SearchView: View {
                 .onSearchBarSearchButtonClicked {
                     searchResults = videos.filter {
                         $0.name.lowercased().contains(self.searchText.lowercased()) || $0.channelName.lowercased().contains(self.searchText.lowercased()) 
+                    }
+                    if searchResults.count == 0 {
+                        isNothingFound = true
                     }
                     UIApplication.shared.closeKeyboard()
                 }
@@ -38,7 +42,7 @@ struct SearchView: View {
                         Text(result.channelName)
                     }
                 }
-                if searchResults.count == 0 {
+                if isNothingFound {
                     VStack(alignment: .center) {
                         Text("Nothing Found").frame(maxWidth: .infinity, alignment: .center)
                     }
