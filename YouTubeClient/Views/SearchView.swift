@@ -25,7 +25,7 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            SearchBar(text: $searchText, placeholder: "Search Spots")
+            SearchBar(text: $searchText, placeholder: "Search YouTube")
                 .onSearchBarSearchButtonClicked {
                     searchResults = videos.filter {
                         $0.title.lowercased().contains(self.searchText.lowercased()) || $0.channelTitle.lowercased().contains(self.searchText.lowercased()) 
