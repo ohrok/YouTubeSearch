@@ -39,7 +39,9 @@ struct SearchView: View {
                 }
                 if isNothingFound {
                     VStack(alignment: .center) {
-                        Text("Nothing Found").frame(maxWidth: .infinity, alignment: .center)
+                        Text("Nothing Found")
+                            .font(.system(size: 15))
+                            .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
             }
