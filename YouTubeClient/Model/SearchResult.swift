@@ -18,17 +18,22 @@ struct ResultArray: Codable {
 }
 
 struct SearchResult: Codable {
-    var etag: String
-    var id: ID
+    var id: String
+    var originalID: originalID
     var snippet: Snippet
     
-    struct ID: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "etag"
+        case originalID = "id"
+        case snippet
+    }
+    
+    struct originalID: Codable {
         var videoId: String
     }
 
     struct Snippet: Codable {
         var title: String
-        var description: String
         var thumbnails: Thumbnails
         var channelTitle: String
         
