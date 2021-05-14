@@ -11,7 +11,7 @@ import Combine
 class SearchViewModel: ObservableObject {
     
     @Published var searchResultRepository = SearchResultRepository()
-    @Published var searchResults = [SearchResult]()
+    @Published var searchResults = [Hoge]()
     
     private var cancellables = Set<AnyCancellable>()
     

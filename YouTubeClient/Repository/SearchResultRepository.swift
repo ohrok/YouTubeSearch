@@ -9,13 +9,14 @@ import Foundation
 
 class SearchResultRepository: ObservableObject {
     
-    @Published var searchResults = [SearchResult]()
+    @Published var searchResults = [Hoge]()
+    @Published var items = [SearchResult]()
     
-    private let videos: [SearchResult] = {
-        var videos: [SearchResult] = []
+    private let videos: [Hoge] = {
+        var videos: [Hoge] = []
         let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
         for i in 0..<1000 {
-            let video = SearchResult(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
+            let video = Hoge(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
             videos.append(video)
         }
         return videos
@@ -24,8 +25,9 @@ class SearchResultRepository: ObservableObject {
     func performSearch(for text: String) {
         let url = apiURL(searchText: text)
         print("URL: '\(url)'")
-        if let jsonString = performRequest(with: url) {
-            print("Received JSON string: '\(jsonString)'")
+        if let data = performRequest(with: url) {
+            let items = parse(data: data)
+            print("Got items: \(items)")
         }
         
         searchResults = videos.filter {
@@ -36,7 +38,7 @@ class SearchResultRepository: ObservableObject {
     private func apiURL(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let maxResults = 50
-        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         let urlString = "https://www.googleapis.com/youtube/v3/search?" +
                         "part=snippet&q=\(encodedText)&type=video" +
                         "&maxResults=\(maxResults)&key=\(APIKey)"
@@ -44,12 +46,23 @@ class SearchResultRepository: ObservableObject {
         return url!
     }
     
-    private func performRequest(with url: URL) -> String? {
+    private func performRequest(with url: URL) -> Data? {
         do {
-            return try String(contentsOf: url, encoding: .utf8)
+            return try Data(contentsOf: url)
         } catch {
             print("Download Error: \(error.localizedDescription)")
             return nil
+        }
+    }
+    
+    private func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from: data)
+            return result.items
+        } catch {
+            print("JSON Error: \(error.localizedDescription)")
+            return []
         }
     }
 }

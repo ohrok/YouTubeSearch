@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchResultCell: View {
     
-    let searchResult: SearchResult
+    let searchResult: Hoge
         
     var body: some View {
         HStack {
@@ -30,6 +30,6 @@ struct SearchResultCell: View {
 
 struct SearchResultCell_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultCell(searchResult: SearchResult(title: "Sample title", channelTitle: "Sample channel title"))
+        SearchResultCell(searchResult: Hoge(title: "Sample title", channelTitle: "Sample channel title"))
     }
 }
