@@ -7,17 +7,11 @@
 
 import Foundation
 
-struct Hoge: Codable, Identifiable {
-    var id = UUID()
-    var title: String
-    var channelTitle: String
-}
-
 struct ResultArray: Codable {
     var items: [SearchResult]
 }
 
-struct SearchResult: Codable {
+struct SearchResult: Codable, Identifiable {
     var id: String
     var originalID: originalID
     var snippet: Snippet

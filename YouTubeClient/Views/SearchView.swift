@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject private var searchViewModel = SearchViewModel()
-    @State private var searchResults: [Hoge] = []
     @State private var searchText: String = ""
     @State private var isNothingFound: Bool = false
     

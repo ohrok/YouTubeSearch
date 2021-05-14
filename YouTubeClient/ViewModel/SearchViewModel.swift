@@ -11,12 +11,12 @@ import Combine
 class SearchViewModel: ObservableObject {
     
     @Published var searchResultRepository = SearchResultRepository()
-    @Published var searchResults = [Hoge]()
+    @Published var searchResults = [SearchResult]()
     
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        searchResultRepository.$searchResults
+        searchResultRepository.$items
             .assign(to: \.searchResults, on: self)
             .store(in: &cancellables)
     }

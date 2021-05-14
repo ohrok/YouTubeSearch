@@ -9,36 +9,21 @@ import Foundation
 
 class SearchResultRepository: ObservableObject {
     
-    @Published var searchResults = [Hoge]()
     @Published var items = [SearchResult]()
-    
-    private let videos: [Hoge] = {
-        var videos: [Hoge] = []
-        let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
-        for i in 0..<1000 {
-            let video = Hoge(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
-            videos.append(video)
-        }
-        return videos
-    }()
     
     func performSearch(for text: String) {
         let url = apiURL(searchText: text)
         print("URL: '\(url)'")
         if let data = performRequest(with: url) {
-            let items = parse(data: data)
+            items = parse(data: data)
             print("Got items: \(items)")
-        }
-        
-        searchResults = videos.filter {
-            $0.title.lowercased().contains(text.lowercased()) || $0.channelTitle.lowercased().contains(text.lowercased())
         }
     }
     
     private func apiURL(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let maxResults = 50
-        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         let urlString = "https://www.googleapis.com/youtube/v3/search?" +
                         "part=snippet&q=\(encodedText)&type=video" +
                         "&maxResults=\(maxResults)&key=\(APIKey)"
