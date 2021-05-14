@@ -18,7 +18,7 @@ struct SearchView: View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search YouTube")
                 .onSearchBarSearchButtonClicked {
-                    searchViewModel.search(searchText: searchText)
+                    searchViewModel.performSearch(for: searchText)
                     isNothingFound = searchViewModel.searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
                 }

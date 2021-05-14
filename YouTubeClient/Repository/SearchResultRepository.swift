@@ -21,9 +21,9 @@ class SearchResultRepository: ObservableObject {
         return videos
     }()
     
-    func search(searchText: String) {
+    func performSearch(for text: String) {
         searchResults = videos.filter {
-            $0.title.lowercased().contains(searchText.lowercased()) || $0.channelTitle.lowercased().contains(searchText.lowercased())
+            $0.title.lowercased().contains(text.lowercased()) || $0.channelTitle.lowercased().contains(text.lowercased())
         }
     }
     
