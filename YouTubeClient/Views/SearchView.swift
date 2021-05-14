@@ -9,16 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
-    private let videos: [SearchResult] = {
-        var videos: [SearchResult] = []
-        let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
-        for i in 0..<1000 {
-            let video = SearchResult(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
-            videos.append(video)
-        }
-        return videos
-    }()
-    
+    @ObservedObject private var searchViewModel = SearchViewModel()
     @State private var searchResults: [SearchResult] = []
     @State private var searchText: String = ""
     @State private var isNothingFound: Bool = false
@@ -27,14 +18,12 @@ struct SearchView: View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search YouTube")
                 .onSearchBarSearchButtonClicked {
-                    searchResults = videos.filter {
-                        $0.title.lowercased().contains(self.searchText.lowercased()) || $0.channelTitle.lowercased().contains(self.searchText.lowercased()) 
-                    }
-                    isNothingFound = searchResults.count == 0
+                    searchViewModel.search(searchText: searchText)
+                    isNothingFound = searchViewModel.searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
                 }
             List {
-                ForEach(searchResults) { searchResult in
+                ForEach(searchViewModel.searchResults) { searchResult in
                     SearchResultCell(searchResult: searchResult)
                 }
                 if isNothingFound {

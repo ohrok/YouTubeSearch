@@ -17,6 +17,8 @@
 		D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */; };
 		D8D75FAE264A791800DCA862 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAD264A791800DCA862 /* SearchResult.swift */; };
 		D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */; };
+		D8D75FB2264E3A4100DCA862 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FB1264E3A4100DCA862 /* SearchViewModel.swift */; };
+		D8D75FB5264E3AB900DCA862 /* SearchResultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FB4264E3AB900DCA862 /* SearchResultRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		D8D75FAD264A791800DCA862 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		D8D75FB1264E3A4100DCA862 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D8D75FB4264E3AB900DCA862 /* SearchResultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				D87D6C2E264A38D500C3BA7C /* App */,
+				D8D75FB6264E3AD800DCA862 /* Repository */,
 				D8D75FAC264A78EE00DCA862 /* Model */,
 				D87D6C2D264A38CB00C3BA7C /* Views */,
+				D8D75FB3264E3A4C00DCA862 /* ViewModel */,
 				D8D75FA9264A740B00DCA862 /* Extension */,
 				D87D6C2F264A390300C3BA7C /* Resources */,
 				D831D8392646622B00561548 /* Preview Content */,
@@ -180,6 +186,22 @@
 				D8D75FAD264A791800DCA862 /* SearchResult.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D8D75FB3264E3A4C00DCA862 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D8D75FB1264E3A4100DCA862 /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D8D75FB6264E3AD800DCA862 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D8D75FB4264E3AB900DCA862 /* SearchResultRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +334,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D831D8362646622800561548 /* SearchView.swift in Sources */,
+				D8D75FB2264E3A4100DCA862 /* SearchViewModel.swift in Sources */,
 				D831D8342646622800561548 /* YouTubeClientApp.swift in Sources */,
 				D8D75FAE264A791800DCA862 /* SearchResult.swift in Sources */,
+				D8D75FB5264E3AB900DCA862 /* SearchResultRepository.swift in Sources */,
 				D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */,
 				D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */,
 				D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */,
