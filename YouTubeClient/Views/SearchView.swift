@@ -12,28 +12,30 @@ struct SearchView: View {
     @ObservedObject private var searchViewModel = SearchViewModel()
     @State private var searchText: String = ""
     @State private var isNothingFound: Bool = false
-    
-    @State var processing = true
+    @State private var isLoading: Bool = false
     
     var body: some View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search YouTube")
                 .onSearchBarSearchButtonClicked {
-                    searchViewModel.performSearch(for: searchText)
-                    isNothingFound = searchViewModel.searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
+                    isLoading = true
+                    //searchViewModel.performSearch(for: searchText)
+                    //isLoading = false
+                    isNothingFound = searchViewModel.searchResults.count == 0
                 }
-            ActivityIndicator(isAnimating: $processing, style: .large)
             List {
                 ForEach(searchViewModel.searchResults) { searchResult in
                     SearchResultCell(searchResult: searchResult)
                 }
+                if isLoading {
+                    LoadingCell(isLoading: isLoading)
+                }
                 if isNothingFound {
-                    VStack(alignment: .center) {
-                        Text("Nothing Found")
-                            .font(.system(size: 15))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                    }
+                    Text("Nothing Found")
+                        .font(.system(size: 15))
+                        .foregroundColor(Color("Loading"))
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .listStyle(InsetGroupedListStyle())
