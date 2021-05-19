@@ -23,7 +23,7 @@ class SearchResultRepository: ObservableObject {
     private func apiURL(searchText: String) -> URL {
         let encodedText = searchText.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let maxResults = 50
-        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        let APIKey = "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         let urlString = "https://www.googleapis.com/youtube/v3/search?" +
                         "part=snippet&q=\(encodedText)&type=video" +
                         "&maxResults=\(maxResults)&key=\(APIKey)"

@@ -19,6 +19,7 @@
 		D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */; };
 		D8D75FB2264E3A4100DCA862 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FB1264E3A4100DCA862 /* SearchViewModel.swift */; };
 		D8D75FB5264E3AB900DCA862 /* SearchResultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FB4264E3AB900DCA862 /* SearchResultRepository.swift */; };
+		D8EC7E532654D35B001C7B5E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EC7E522654D35B001C7B5E /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		D8D75FB1264E3A4100DCA862 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D8D75FB4264E3AB900DCA862 /* SearchResultRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRepository.swift; sourceTree = "<group>"; };
+		D8EC7E522654D35B001C7B5E /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				D831D8352646622800561548 /* SearchView.swift */,
 				D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */,
 				D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */,
+				D8EC7E522654D35B001C7B5E /* ActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				D8D75FB5264E3AB900DCA862 /* SearchResultRepository.swift in Sources */,
 				D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */,
 				D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */,
+				D8EC7E532654D35B001C7B5E /* ActivityIndicator.swift in Sources */,
 				D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

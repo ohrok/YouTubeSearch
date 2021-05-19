@@ -13,6 +13,8 @@ struct SearchView: View {
     @State private var searchText: String = ""
     @State private var isNothingFound: Bool = false
     
+    @State var processing = true
+    
     var body: some View {
         VStack {
             SearchBar(text: $searchText, placeholder: "Search YouTube")
@@ -21,6 +23,7 @@ struct SearchView: View {
                     isNothingFound = searchViewModel.searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
                 }
+            ActivityIndicator(isAnimating: $processing, style: .large)
             List {
                 ForEach(searchViewModel.searchResults) { searchResult in
                     SearchResultCell(searchResult: searchResult)
