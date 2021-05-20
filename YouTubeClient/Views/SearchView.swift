@@ -23,7 +23,6 @@ struct SearchView: View {
                     searchViewModel.performSearch(for: searchText, completion: { success in
                         if success {
                             isLoading = false
-                        } else {
                             isNothingFound = searchViewModel.searchResults.count == 0
                         }
                     })

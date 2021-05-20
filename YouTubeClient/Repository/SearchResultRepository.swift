@@ -14,30 +14,28 @@ class SearchResultRepository: ObservableObject {
     
     @Published var items = [SearchResult]()
     
-    private var cancellables = Set<AnyCancellable>()
+    private var cancellable: AnyCancellable?
     
     func performSearch(for text: String, completion: @escaping SearchComplete) {
+        cancellable?.cancel()
         items = []
         let url = apiURL(searchText: text)
         
-        URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap { (data, response) -> Data in
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+        cancellable = URLSession.shared
+            .dataTaskPublisher(for: url)
+            .tryMap { element -> Data in
+                guard let httpResponse = element.response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
-                return data
+                return element.data
             }
             .decode(type: ResultArray.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
-                DispatchQueue.main.async {
-                    completion(true)
-                }
+                completion(true)
             }, receiveValue: { resultArray in
-                DispatchQueue.main.async {
-                    self.items = resultArray.items
-                }
+                self.items = resultArray.items
             })
-            .store(in: &cancellables)
     }
     
     private func apiURL(searchText: String) -> URL {
