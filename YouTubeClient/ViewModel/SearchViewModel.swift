@@ -21,7 +21,7 @@ class SearchViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func performSearch(for text: String) {
-        searchResultRepository.performSearch(for: text)
+    func performSearch(for text: String, completion: @escaping SearchComplete) {
+        searchResultRepository.performSearch(for: text, completion: completion)
     }
 }

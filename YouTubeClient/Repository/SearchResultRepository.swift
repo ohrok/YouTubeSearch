@@ -7,16 +7,26 @@
 
 import Foundation
 
+typealias SearchComplete = (Bool) -> Void
+
 class SearchResultRepository: ObservableObject {
     
     @Published var items = [SearchResult]()
     
-    func performSearch(for text: String) {
+    func performSearch(for text: String, completion: @escaping SearchComplete) {
+        let queue = DispatchQueue.global()
         let url = apiURL(searchText: text)
-        print("URL: '\(url)'")
-        if let data = performRequest(with: url) {
-            items = parse(data: data)
-            print("Got items: \(items)")
+        var results = [SearchResult]()
+        
+        queue.async {
+            if let data = self.performRequest(with: url) {
+                results = self.parse(data: data)
+            }
+            
+            DispatchQueue.main.async {
+                self.items = results
+                completion(true)
+            }
         }
     }
     

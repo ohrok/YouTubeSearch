@@ -20,9 +20,13 @@ struct SearchView: View {
                 .onSearchBarSearchButtonClicked {
                     UIApplication.shared.closeKeyboard()
                     isLoading = true
-                    //searchViewModel.performSearch(for: searchText)
-                    //isLoading = false
-                    isNothingFound = searchViewModel.searchResults.count == 0
+                    searchViewModel.performSearch(for: searchText, completion: { success in
+                        if success {
+                            isLoading = false
+                        } else {
+                            isNothingFound = searchViewModel.searchResults.count == 0
+                        }
+                    })
                 }
             List {
                 ForEach(searchViewModel.searchResults) { searchResult in
@@ -30,8 +34,7 @@ struct SearchView: View {
                 }
                 if isLoading {
                     LoadingCell(isLoading: isLoading)
-                }
-                if isNothingFound {
+                } else if isNothingFound {
                     Text("Nothing Found")
                         .font(.system(size: 15))
                         .foregroundColor(Color("Loading"))
