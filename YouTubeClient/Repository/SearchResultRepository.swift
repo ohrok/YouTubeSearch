@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 typealias SearchComplete = (Bool) -> Void
 
@@ -13,21 +14,30 @@ class SearchResultRepository: ObservableObject {
     
     @Published var items = [SearchResult]()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     func performSearch(for text: String, completion: @escaping SearchComplete) {
-        let queue = DispatchQueue.global()
+        items = []
         let url = apiURL(searchText: text)
-        var results = [SearchResult]()
         
-        queue.async {
-            if let data = self.performRequest(with: url) {
-                results = self.parse(data: data)
+        URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { (data, response) -> Data in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    throw URLError(.badServerResponse)
+                }
+                return data
             }
-            
-            DispatchQueue.main.async {
-                self.items = results
-                completion(true)
-            }
-        }
+            .decode(type: ResultArray.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { _ in
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            }, receiveValue: { resultArray in
+                DispatchQueue.main.async {
+                    self.items = resultArray.items
+                }
+            })
+            .store(in: &cancellables)
     }
     
     private func apiURL(searchText: String) -> URL {
@@ -39,25 +49,5 @@ class SearchResultRepository: ObservableObject {
                         "&maxResults=\(maxResults)&key=\(APIKey)"
         let url = URL(string: urlString)
         return url!
-    }
-    
-    private func performRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
-    private func parse(data: Data) -> [SearchResult] {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from: data)
-            return result.items
-        } catch {
-            print("JSON Error: \(error.localizedDescription)")
-            return []
-        }
     }
 }
