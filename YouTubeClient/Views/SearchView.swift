@@ -11,7 +11,7 @@ struct SearchView: View {
     
     @ObservedObject private var searchViewModel = SearchViewModel()
     @State private var searchText: String = ""
-    @State private var isNothingFound: Bool = false
+    @State private var isNoResults: Bool = false
     @State private var isLoading: Bool = false
     @State private var isShowingAlert: Bool = false
     
@@ -22,11 +22,12 @@ struct SearchView: View {
                     UIApplication.shared.closeKeyboard()
                     isLoading = true
                     searchViewModel.performSearch(for: searchText, completion: { success in
-                        if !success {
+                        if success {
+                            isNoResults = searchViewModel.searchResults.count == 0
+                        } else {
                             isShowingAlert = true
                         }
                         isLoading = false
-                        isNothingFound = searchViewModel.searchResults.count == 0
                     })
                 }
             List {
@@ -35,7 +36,7 @@ struct SearchView: View {
                 }
                 if isLoading {
                     LoadingCell(isLoading: isLoading)
-                } else if isNothingFound {
+                } else if isNoResults {
                     Text("Nothing Found")
                         .font(.system(size: 15))
                         .foregroundColor(Color("Loading"))
