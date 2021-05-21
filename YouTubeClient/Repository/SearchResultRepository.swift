@@ -13,12 +13,16 @@ typealias SearchComplete = (Bool) -> Void
 class SearchResultRepository: ObservableObject {
     
     @Published var items = [SearchResult]()
+    @Published var isLoading = false
+    @Published var isNoResults = false
     
     private var cancellable: AnyCancellable?
     
     func performSearch(for text: String, completion: @escaping SearchComplete) {
         cancellable?.cancel()
         items = []
+        isLoading = true
+        isNoResults = false
         let url = apiURL(searchText: text)
         var success = false
         
@@ -34,9 +38,11 @@ class SearchResultRepository: ObservableObject {
             .decode(type: ResultArray.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
+                self.isLoading = false
                 completion(success)
             }, receiveValue: { resultArray in
                 self.items = resultArray.items
+                self.isNoResults = self.items.count == 0
             })
     }
     

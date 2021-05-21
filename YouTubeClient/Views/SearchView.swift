@@ -11,8 +11,6 @@ struct SearchView: View {
     
     @ObservedObject private var searchViewModel = SearchViewModel()
     @State private var searchText: String = ""
-    @State private var isNoResults: Bool = false
-    @State private var isLoading: Bool = false
     @State private var isShowingAlert: Bool = false
     
     var body: some View {
@@ -20,23 +18,20 @@ struct SearchView: View {
             SearchBar(text: $searchText, placeholder: "Search YouTube")
                 .onSearchBarSearchButtonClicked {
                     UIApplication.shared.closeKeyboard()
-                    isLoading = true
                     searchViewModel.performSearch(for: searchText, completion: { success in
-                        if success {
-                            isNoResults = searchViewModel.searchResults.count == 0
-                        } else {
+                        if !success {
                             isShowingAlert = true
                         }
-                        isLoading = false
                     })
                 }
             List {
                 ForEach(searchViewModel.searchResults) { searchResult in
                     SearchResultCell(searchResult: searchResult)
                 }
-                if isLoading {
-                    LoadingCell(isLoading: isLoading)
-                } else if isNoResults {
+                if searchViewModel.isLoading {
+                    LoadingCell(isLoading: searchViewModel.isLoading)
+                }
+                if searchViewModel.isNoResults {
                     Text("Nothing Found")
                         .font(.system(size: 15))
                         .foregroundColor(Color("Loading"))
