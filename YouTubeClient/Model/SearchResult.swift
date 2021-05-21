@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResultArray: Codable {
-    var items: [SearchResult]
+    var items = [SearchResult]()
 }
 
 struct SearchResult: Codable, Identifiable {

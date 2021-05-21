@@ -18,7 +18,10 @@ class SearchViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
-        searchResultRepository.$items
+        searchResultRepository.$resultArray
+            .map { resultArray in
+                resultArray.items
+            }
             .assign(to: \.searchResults, on: self)
             .store(in: &cancellables)
         
@@ -32,6 +35,7 @@ class SearchViewModel: ObservableObject {
     }
     
     func performSearch(for text: String, completion: @escaping SearchComplete) {
+        searchResults = []
         searchResultRepository.performSearch(for: text, completion: completion)
     }
 }
