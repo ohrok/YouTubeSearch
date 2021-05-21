@@ -34,7 +34,7 @@ struct SearchView: View {
                 if searchViewModel.isNoResults {
                     Text("Nothing Found")
                         .font(.system(size: 15))
-                        .foregroundColor(Color("Loading"))
+                        .foregroundColor(.gray)
                         .frame(maxWidth: .infinity, alignment: .center)
                 }
             }

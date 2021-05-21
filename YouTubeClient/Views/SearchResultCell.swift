@@ -21,6 +21,7 @@ struct SearchResultCell: View {
                 .font(.system(size: 18))
             Text(searchResult.snippet.channelTitle)
                 .font(.system(size: 15))
+                .foregroundColor(.gray)
         }
     }
 }

@@ -15,7 +15,7 @@ struct LoadingCell: View {
         HStack {
             Text("Loading...")
                 .font(.system(size: 15))
-                .foregroundColor(Color("Loading"))
+                .foregroundColor(.gray)
             ActivityIndicator(isAnimating: $isLoading, style: .medium)
         }
         .frame(maxWidth: .infinity, alignment: .center)
