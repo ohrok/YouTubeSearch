@@ -33,6 +33,8 @@ struct SearchResult: Codable, Identifiable {
         
         struct Thumbnails: Codable {
             var `default`: Thumbnail
+            var medium: Thumbnail
+            var high: Thumbnail
             
             struct Thumbnail: Codable {
                 var url: String

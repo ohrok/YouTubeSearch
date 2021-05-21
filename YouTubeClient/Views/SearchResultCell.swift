@@ -13,18 +13,14 @@ struct SearchResultCell: View {
     let searchResult: SearchResult
         
     var body: some View {
-        HStack {
-            KFImage(URL(string: searchResult.snippet.thumbnails.default.url))
+        VStack(alignment: .leading, spacing: 8) {
+            KFImage(URL(string: searchResult.snippet.thumbnails.high.url))
                 .resizable()
-                .font(.system(size: 10, weight: .thin, design: .default))
-                .frame(width: 60, height: 60)
-                .foregroundColor(.gray)
-            VStack(alignment: .leading, spacing: 8) {
-                Text(searchResult.snippet.title)
-                    .font(.system(size: 18))
-                Text(searchResult.snippet.channelTitle)
-                    .font(.system(size: 15))
-            }
+                .aspectRatio(contentMode: .fill)
+            Text(searchResult.snippet.title)
+                .font(.system(size: 18))
+            Text(searchResult.snippet.channelTitle)
+                .font(.system(size: 15))
         }
     }
 }
