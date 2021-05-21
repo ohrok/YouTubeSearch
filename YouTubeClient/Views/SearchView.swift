@@ -13,6 +13,7 @@ struct SearchView: View {
     @State private var searchText: String = ""
     @State private var isNothingFound: Bool = false
     @State private var isLoading: Bool = false
+    @State private var isShowingAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -21,10 +22,11 @@ struct SearchView: View {
                     UIApplication.shared.closeKeyboard()
                     isLoading = true
                     searchViewModel.performSearch(for: searchText, completion: { success in
-                        if success {
-                            isLoading = false
-                            isNothingFound = searchViewModel.searchResults.count == 0
+                        if !success {
+                            isShowingAlert = true
                         }
+                        isLoading = false
+                        isNothingFound = searchViewModel.searchResults.count == 0
                     })
                 }
             List {
@@ -41,6 +43,12 @@ struct SearchView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
+        }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("Whoops..."),
+                message: Text("There was an error accessing the YouTube." + " Please try again."),
+                dismissButton: .cancel(Text("OK")))
         }
     }
 }

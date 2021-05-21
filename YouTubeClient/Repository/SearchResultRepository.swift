@@ -20,6 +20,7 @@ class SearchResultRepository: ObservableObject {
         cancellable?.cancel()
         items = []
         let url = apiURL(searchText: text)
+        var success = false
         
         cancellable = URLSession.shared
             .dataTaskPublisher(for: url)
@@ -27,12 +28,13 @@ class SearchResultRepository: ObservableObject {
                 guard let httpResponse = element.response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)
                 }
+                success = true
                 return element.data
             }
             .decode(type: ResultArray.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { _ in
-                completion(true)
+                completion(success)
             }, receiveValue: { resultArray in
                 self.items = resultArray.items
             })
