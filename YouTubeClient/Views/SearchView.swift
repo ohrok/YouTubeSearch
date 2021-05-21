@@ -15,7 +15,7 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            SearchBar(text: $searchText, placeholder: "Search YouTube")
+            SearchBar(text: $searchText, placeholder: "Search YouTube", isFirstResponder: true)
                 .onSearchBarSearchButtonClicked {
                     UIApplication.shared.closeKeyboard()
                     searchViewModel.performSearch(for: searchText, completion: { success in
