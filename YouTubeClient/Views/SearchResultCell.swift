@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SearchResultCell: View {
     
@@ -13,7 +14,7 @@ struct SearchResultCell: View {
         
     var body: some View {
         HStack {
-            Image(systemName: "square")
+            KFImage(URL(string: searchResult.snippet.thumbnails.default.url))
                 .resizable()
                 .font(.system(size: 10, weight: .thin, design: .default))
                 .frame(width: 60, height: 60)
@@ -25,11 +26,5 @@ struct SearchResultCell: View {
                     .font(.system(size: 15))
             }
         }
-    }
-}
-
-struct SearchResultCell_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchResultCell(searchResult: SearchResult(id: "id", originalID: SearchResult.originalID(videoId: "videoid"), snippet: SearchResult.Snippet(title: "title", thumbnails: SearchResult.Snippet.Thumbnails(default: SearchResult.Snippet.Thumbnails.Thumbnail(url: "url")), channelTitle: "channelTitle")))
     }
 }
