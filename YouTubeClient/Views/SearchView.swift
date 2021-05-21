@@ -9,43 +9,42 @@ import SwiftUI
 
 struct SearchView: View {
     
-    private let videos: [SearchResult] = {
-        var videos: [SearchResult] = []
-        let channelNameExamples: [String] = ["iOS Academy", "TOHO animation", "SUTEHAGE"]
-        for i in 0..<1000 {
-            let video = SearchResult(title: "video\(i + 1)", channelTitle: channelNameExamples.randomElement() ?? "")
-            videos.append(video)
-        }
-        return videos
-    }()
-    
-    @State private var searchResults: [SearchResult] = []
+    @ObservedObject private var searchViewModel = SearchViewModel()
     @State private var searchText: String = ""
-    @State private var isNothingFound: Bool = false
+    @State private var isShowingAlert: Bool = false
     
     var body: some View {
         VStack {
-            SearchBar(text: $searchText, placeholder: "Search YouTube")
+            SearchBar(text: $searchText, placeholder: "Search YouTube", isFirstResponder: true)
                 .onSearchBarSearchButtonClicked {
-                    searchResults = videos.filter {
-                        $0.title.lowercased().contains(self.searchText.lowercased()) || $0.channelTitle.lowercased().contains(self.searchText.lowercased()) 
-                    }
-                    isNothingFound = searchResults.count == 0
                     UIApplication.shared.closeKeyboard()
+                    searchViewModel.performSearch(for: searchText, completion: { success in
+                        if !success {
+                            isShowingAlert = true
+                        }
+                    })
                 }
             List {
-                ForEach(searchResults) { searchResult in
+                ForEach(searchViewModel.searchResults) { searchResult in
                     SearchResultCell(searchResult: searchResult)
                 }
-                if isNothingFound {
-                    VStack(alignment: .center) {
-                        Text("Nothing Found")
-                            .font(.system(size: 15))
-                            .frame(maxWidth: .infinity, alignment: .center)
-                    }
+                if searchViewModel.isLoading {
+                    LoadingCell(isLoading: searchViewModel.isLoading)
+                }
+                if searchViewModel.isNoResults {
+                    Text("Nothing Found")
+                        .font(.system(size: 15))
+                        .foregroundColor(Color("Loading"))
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .listStyle(InsetGroupedListStyle())
+        }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("Whoops..."),
+                message: Text("There was an error accessing the YouTube." + " Please try again."),
+                dismissButton: .cancel(Text("OK")))
         }
     }
 }

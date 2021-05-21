@@ -14,6 +14,7 @@ struct SearchBar: UIViewRepresentable {
     var placeholder: String
     var searchBarStyle = UISearchBar.Style.minimal
     var autocapitalizationType = UITextAutocapitalizationType.none
+    var isFirstResponder = false
     
     private let searchButtonClickedSubject = PassthroughSubject<Void, Never>()
     
@@ -27,6 +28,9 @@ struct SearchBar: UIViewRepresentable {
         searchBar.searchBarStyle  = searchBarStyle
         searchBar.autocapitalizationType = autocapitalizationType
         searchBar.placeholder = placeholder
+        if isFirstResponder {
+            searchBar.becomeFirstResponder()
+        }
         return searchBar
     }
     
