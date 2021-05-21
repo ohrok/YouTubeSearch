@@ -15,6 +15,7 @@ struct SearchResultCell: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             KFImage(URL(string: searchResult.snippet.thumbnails.high.url))
+                .cancelOnDisappear(true)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
             Text(searchResult.snippet.title)
