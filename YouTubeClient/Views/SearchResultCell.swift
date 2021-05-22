@@ -14,7 +14,14 @@ struct SearchResultCell: View {
         
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            KFImage(URL(string: searchResult.snippet.thumbnails.high.url))
+            KFImage
+                .url(URL(string: searchResult.snippet.thumbnails.high.url))
+                .placeholder {
+                    Image("Placeholder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .foregroundColor(.gray)
+                }
                 .cancelOnDisappear(true)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
