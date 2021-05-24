@@ -27,13 +27,7 @@ struct SearchView: View {
                     }
                 List {
                     ForEach(searchViewModel.searchResults) { searchResult in
-                        ZStack {
-                            NavigationLink(destination: WebView(loadUrl: "https://www.youtube.com/watch?v=" + searchResult.originalID.videoId)) {
-                                EmptyView()
-                            }
-                            
-                            SearchResultCell(searchResult: searchResult)
-                        }
+                        SearchResultCell(searchResult: searchResult)
                     }
                     if searchViewModel.isLoading {
                         LoadingCell(isLoading: searchViewModel.isLoading)
