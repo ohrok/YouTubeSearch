@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		D831D8462646622B00561548 /* YouTubeClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831D8452646622B00561548 /* YouTubeClientTests.swift */; };
 		D831D8512646622B00561548 /* YouTubeClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D831D8502646622B00561548 /* YouTubeClientUITests.swift */; };
 		D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */; };
+		D8862C23265B7E6400D2F5CD /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8862C22265B7E6400D2F5CD /* WebView.swift */; };
 		D8D75FAB264A745100DCA862 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */; };
 		D8D75FAE264A791800DCA862 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAD264A791800DCA862 /* SearchResult.swift */; };
 		D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */; };
@@ -58,6 +59,7 @@
 		D831D8502646622B00561548 /* YouTubeClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeClientUITests.swift; sourceTree = "<group>"; };
 		D831D8522646622B00561548 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87D6C30264A3A2D00C3BA7C /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		D8862C22265B7E6400D2F5CD /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D8D75FAA264A745100DCA862 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		D8D75FAD264A791800DCA862 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -99,7 +101,6 @@
 				1CF84E08A3DAF75389AA983C /* Pods-YouTubeClient.debug.xcconfig */,
 				605AF2844A4951CCA7259327 /* Pods-YouTubeClient.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -182,6 +183,7 @@
 				D8D75FAF264BC3DB00DCA862 /* SearchResultCell.swift */,
 				D8EC7E522654D35B001C7B5E /* ActivityIndicator.swift */,
 				D8EC7E562654D77F001C7B5E /* LoadingCell.swift */,
+				D8862C22265B7E6400D2F5CD /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -418,6 +420,7 @@
 				D8D75FB0264BC3DB00DCA862 /* SearchResultCell.swift in Sources */,
 				D8EC7E532654D35B001C7B5E /* ActivityIndicator.swift in Sources */,
 				D87D6C31264A3A2D00C3BA7C /* SearchBar.swift in Sources */,
+				D8862C23265B7E6400D2F5CD /* WebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

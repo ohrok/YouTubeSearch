@@ -14,37 +14,40 @@ struct SearchView: View {
     @State private var isShowingAlert: Bool = false
     
     var body: some View {
-        VStack {
-            SearchBar(text: $searchText, placeholder: "Search YouTube", isFirstResponder: true)
-                .onSearchBarSearchButtonClicked {
-                    UIApplication.shared.closeKeyboard()
-                    searchViewModel.performSearch(for: searchText, completion: { success in
-                        if !success {
-                            isShowingAlert = true
-                        }
-                    })
+        NavigationView {
+            VStack {
+                SearchBar(text: $searchText, placeholder: "Search YouTube", isFirstResponder: true)
+                    .onSearchBarSearchButtonClicked {
+                        UIApplication.shared.closeKeyboard()
+                        searchViewModel.performSearch(for: searchText, completion: { success in
+                            if !success {
+                                isShowingAlert = true
+                            }
+                        })
+                    }
+                List {
+                    ForEach(searchViewModel.searchResults) { searchResult in
+                        SearchResultCell(searchResult: searchResult)
+                    }
+                    if searchViewModel.isLoading {
+                        LoadingCell(isLoading: searchViewModel.isLoading)
+                    }
+                    if searchViewModel.isNoResults {
+                        Text("Nothing Found")
+                            .font(.system(size: 15))
+                            .foregroundColor(.gray)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
                 }
-            List {
-                ForEach(searchViewModel.searchResults) { searchResult in
-                    SearchResultCell(searchResult: searchResult)
-                }
-                if searchViewModel.isLoading {
-                    LoadingCell(isLoading: searchViewModel.isLoading)
-                }
-                if searchViewModel.isNoResults {
-                    Text("Nothing Found")
-                        .font(.system(size: 15))
-                        .foregroundColor(.gray)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                }
+                .listStyle(InsetGroupedListStyle())
             }
-            .listStyle(InsetGroupedListStyle())
-        }
-        .alert(isPresented: $isShowingAlert) {
-            Alert(
-                title: Text("Whoops..."),
-                message: Text("There was an error accessing the YouTube." + " Please try again."),
-                dismissButton: .cancel(Text("OK")))
+            .alert(isPresented: $isShowingAlert) {
+                Alert(
+                    title: Text("Whoops..."),
+                    message: Text("There was an error accessing the YouTube." + " Please try again."),
+                    dismissButton: .cancel(Text("OK")))
+            }
+            .navigationBarHidden(true)
         }
     }
 }
