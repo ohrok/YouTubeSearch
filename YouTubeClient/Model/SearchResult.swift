@@ -21,24 +21,24 @@ struct SearchResult: Codable, Identifiable {
         case originalID = "id"
         case snippet
     }
-    
-    struct originalID: Codable {
-        var videoId: String
-    }
+}
 
-    struct Snippet: Codable {
-        var title: String
-        var thumbnails: Thumbnails
-        var channelTitle: String
-        
-        struct Thumbnails: Codable {
-            var `default`: Thumbnail
-            var medium: Thumbnail
-            var high: Thumbnail
-            
-            struct Thumbnail: Codable {
-                var url: String
-            }
-        }
-    }
+struct originalID: Codable {
+    var videoId: String
+}
+
+struct Snippet: Codable {
+    var title: String
+    var thumbnails: Thumbnails
+    var channelTitle: String
+}
+
+struct Thumbnails: Codable {
+    var `default`: Thumbnail
+    var medium: Thumbnail
+    var high: Thumbnail
+}
+
+struct Thumbnail: Codable {
+    var url: String
 }
