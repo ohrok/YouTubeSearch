@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D831D82F2646622800561548"
-               BuildableName = "YouTubeClient.app"
-               BlueprintName = "YouTubeClient"
-               ReferencedContainer = "container:YouTubeClient.xcodeproj">
+               BuildableName = "YouTubeSearch.app"
+               BlueprintName = "YouTubeSearch"
+               ReferencedContainer = "container:YouTubeSearch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D831D8402646622B00561548"
-               BuildableName = "YouTubeClientTests.xctest"
-               BlueprintName = "YouTubeClientTests"
-               ReferencedContainer = "container:YouTubeClient.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D831D84B2646622B00561548"
-               BuildableName = "YouTubeClientUITests.xctest"
-               BlueprintName = "YouTubeClientUITests"
-               ReferencedContainer = "container:YouTubeClient.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -65,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D831D82F2646622800561548"
-            BuildableName = "YouTubeClient.app"
-            BlueprintName = "YouTubeClient"
-            ReferencedContainer = "container:YouTubeClient.xcodeproj">
+            BuildableName = "YouTubeSearch.app"
+            BlueprintName = "YouTubeSearch"
+            ReferencedContainer = "container:YouTubeSearch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D831D82F2646622800561548"
-            BuildableName = "YouTubeClient.app"
-            BlueprintName = "YouTubeClient"
-            ReferencedContainer = "container:YouTubeClient.xcodeproj">
+            BuildableName = "YouTubeSearch.app"
+            BlueprintName = "YouTubeSearch"
+            ReferencedContainer = "container:YouTubeSearch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
